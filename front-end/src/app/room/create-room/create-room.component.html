@@ -1,0 +1,134 @@
+<div class="d-flex justify-content-center">
+  <div [hidden]="submitted" style="width: 400px">
+    <h3 class="text-center">Criar Sala</h3>
+
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group" [formGroup]="newRoomForm" #roomForm="ngForm">
+        <label for="name">Nome</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          placeholder="Nome da Sala"
+          name="nameInput"
+          formControlName="name"
+        />
+        <app-message
+          class="ml-2"
+          message="Campo Obrigatório"
+          *ngIf="
+            newRoomForm.get('name')?.errors?.required &&
+            newRoomForm.get('name')?.touched
+          "
+        ></app-message>
+        <app-message
+          class="ml-2"
+          message="Nome Inválido"
+          *ngIf="
+            newRoomForm.get('name')?.errors?.nameValidator &&
+            newRoomForm.get('name')?.touched
+          "
+        ></app-message>
+      </div>
+      <br />
+      <div class="form-group" [formGroup]="newRoomForm">
+        <label for="name">Data</label>
+        <input
+          type="date"
+          class="form-control"
+          id="date"
+          name="date"
+          formControlName="date"
+        />
+        <app-message
+          class="ml-2"
+          message="Campo Obrigatório"
+          *ngIf="
+            newRoomForm.get('date')?.errors?.required &&
+            newRoomForm.get('date')?.touched
+          "
+        ></app-message>
+        <app-message
+        class="ml-2"
+        message="Data Inválida"
+        *ngIf="
+          newRoomForm.get('date')?.errors?.dateValidator &&
+          newRoomForm.get('date')?.touched
+        "
+      ></app-message>
+      </div>
+      <br />
+      <div class="form-group" [formGroup]="newRoomForm">
+        <label for="name">Início</label>
+        <input
+          type="time"
+          class="form-control"
+          id="startHour"
+          name="startHour"
+          formControlName="startHour"
+        />
+        <app-message
+        class="ml-2"
+        message="Campo Obrigatório"
+        *ngIf="
+          newRoomForm.get('startHour')?.errors?.required &&
+          newRoomForm.get('startHour')?.touched
+        "
+      ></app-message>
+      </div>
+      <br />
+      <div class="form-group" [formGroup]="newRoomForm">
+        <label for="name">Fim</label>
+        <input
+          type="time"
+          class="form-control"
+          id="endHour"
+          name="endHour"
+          formControlName="endHour"
+        />
+        <app-message
+        class="ml-2"
+        message="Campo Obrigatório"
+        *ngIf="
+          newRoomForm.get('endHour')?.errors?.required &&
+          newRoomForm.get('endHour')?.touched
+        "
+      ></app-message>
+      </div>
+      <br />
+      <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-success" [disabled]="roomForm.invalid">Submit</button>
+      </div>
+    </form>
+  </div>
+
+  <div [hidden]="!submitted">
+    <h2>Detalhes da Sala</h2>
+
+    <hr />
+    <div *ngIf="room">
+      <div class="mt-2 d-flex justify-content-between">
+        <label><b>Nome: </b></label>
+        <div>{{ room.name }}</div>
+      </div>
+      <div class="mt-2 d-flex justify-content-between">
+        <label><b>Data: </b></label>
+        <div>{{ room.date | date: "shortDate" }}</div>
+      </div>
+      <div class="mt-2 d-flex justify-content-between">
+        <label><b>Início: </b></label>
+        <div>{{ room.startHour }}</div>
+      </div>
+      <div class="mt-2 d-flex justify-content-between">
+        <label><b>Fim: </b></label>
+        <div>{{ room.endHour }}</div>
+      </div>
+    </div>
+    <button class="btn btn-success d-block btn-form mt-2" (click)="save()">
+      Adicionar
+    </button>
+    <button (click)="gotoCreate()" class="btn btn-danger d-block mt-2 btn-form">
+      Cancelar
+    </button>
+  </div>
+</div>

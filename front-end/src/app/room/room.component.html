@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a routerLink="" class="nav-link" routerLinkActive="active">Salas</a>
+    </li>
+    <li class="nav-item">
+      <a routerLink="add" class="nav-link" routerLinkActive="active"
+        >Adicionar Sala</a
+      >
+    </li>
+  </ul>
+</nav>
+<div class="container d-flex justify-content-center">
+  <div>
+    <br />
+    <h2 style="text-align: center">{{ title }}</h2>
+    <hr />
+    <div class="card">
+      <div class="card-body text-center">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

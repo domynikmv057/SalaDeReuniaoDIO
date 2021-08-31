@@ -1,0 +1,27 @@
+<h2>Detalhes da Sala</h2>
+
+<hr />
+<div *ngIf="room">
+  <div class="mt-2 d-flex justify-content-around">
+    <label><b>Nome: </b></label>
+    <div>{{ room.name }}</div>
+  </div>
+  <div class="mt-2 d-flex justify-content-around">
+    <label><b>Data: </b></label>
+    <div>{{ room.date | date: "shortDate" }}</div>
+  </div>
+  <div class="mt-2 d-flex justify-content-around">
+    <label><b>Início: </b></label>
+    <div>{{ room.startHour }}</div>
+  </div>
+  <div class="mt-2 d-flex justify-content-around">
+    <label><b>Fim: </b></label>
+    <div>{{ room.endHour }}</div>
+  </div>
+</div>
+
+<br />
+<br />
+<button (click)="list()" class="btn btn-primary">
+  Voltar para relação de salas</button
+><br />
